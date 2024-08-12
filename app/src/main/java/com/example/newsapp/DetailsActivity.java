@@ -2,6 +2,7 @@ package com.example.newsapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,8 +29,15 @@ public class DetailsActivity extends AppCompatActivity {
         txt_state.setText(data.getState());
         txt_population.setText(data.getPopulation());
         txt_year.setText(data.getYear());
-//        Picasso.get().load(headlines.getUrlToImage()).into(img_news);
 
+        String imageUri = "@drawable/"+data.getState().toLowerCase();
+
+        int checkExistence = getResources().getIdentifier(imageUri, null, getPackageName());
+
+        if ( checkExistence != 0 ) {  // the resource exists...
+            Drawable logoDrawable = getResources().getDrawable(checkExistence);
+            img_news.setImageDrawable(logoDrawable);
+        }
 
     }
 }
